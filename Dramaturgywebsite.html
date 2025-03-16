@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.B. Dramaturgical Website</title>
+  <style>
+    
+    body {
+      font-family: 'Georgia', serif; /* Changed font to Georgia */
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: #6F4E37; /* Dark brown ochre */
+      overflow: show;
+      padding: 10px 0;
+      text-align: right;
+      color: #f5f5dc /* Align buttons to the right */
+    }
+    nav a {
+      display: inline-block;
+      color: #f5f5dc;
+      text-align: center;
+      padding: 14px 25px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background-color: #9F7D56; /* Slightly lighter shade */
+      color: #f5f5dc;
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+    }
+    .active {
+      display: block;
+    }
+    .site-title-small {
+      position: absolute;
+      top: 25px;
+      left: 10px;
+      font-size: 16px;
+      color: white; /* Set subtitle font color to white */
+      font-style: italic;
+    }
+    .home-title {
+      text-align: center;
+      font-size: 48px;
+      color: white; /* Set title font color to white */
+      margin-top: 16px;
+      position: relative;
+      z-index: 2;
+      color: #f5f5dc;
+    }
+    .home-subtitle {
+      text-align: center;
+      font-size: 24px;
+      color: white; /* Set title font color to white */
+      margin-top: 100px;
+      position: relative;
+      z-index: 2;
+      color: #f5f5dc;
+    }
+    #home {
+      background-image: url('https://arthive.com/res/media/img/oy800/work/b10/129541@2x.jpg'); /* Replace with the correct image URL */
+      background-size: cover;
+      background-position: center;
+      height: 100vh; /* Full screen height */
+      position: relative;
+    }
+    #contact{
+      background-image: url(''); /* Replace with the correct image URL */
+      background-size: cover;
+      background-position: center;
+      height: 100vh; /* Full screen height */
+      position: relative;
+      color: black;
+    }
+    #home::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3); /* Dark overlay with slight transparency */
+      z-index: 1; /* Places the overlay behind the text */
+    }
+    .home-title {
+      z-index: 2; /* Ensures the title is above the overlay */
+    }
+    .glossary-category {
+      margin-top: 20px;
+    }
+    .search-bar {
+      padding: 10px;
+      width: 98.3%;
+      font-size: 16px;
+      margin-bottom: 0px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+    .dropdown-content label {
+      display: block;
+      padding: 8px;
+      font-size: 16px;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .glossary-term {
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 18px;
+    }
+    .glossary-term:nth-child(odd) {
+      background-color: #D2B48C; /* Grey-white background for odd terms */
+    }
+    .glossary-term:nth-child(even) {
+      background-color: #D2B48C; /* White background for even terms */
+    }
+    .glossary-term h4 {
+      font-weight: bold; /* Bold the term */
+      margin: 0;
+      color:#3a2a11;
+    }
+    .glossary-term p {
+      font-size: 16px;
+      margin-top: 5px; /* Adds space between term and definition */
+      margin-left: 20px; /* Indentation for definition */
+      color:#3a2a11;
+    }
+    .nav-item {
+  position: relative;
+  display: inline-block;
+}
+
+
+.nav-item {
+      position: relative;
+      display: inline-block;
+    }
+    
+
+    
+    .nav-item:hover .subnav {
+      display: block;
+    }
+    
+    .subnav a {
+      color: #f5f5dc;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+    
+    .subnav a:hover {
+      background-color: #9F7D56;
+      color: black;
+    }
+    .nav-item {
+  position: relative;
+  display: inline-block;
+  z-index: 1000; /* Add z-index to parent */
+}
+
+.subnav {
+  display: none;
+  position: absolute;
+  background-color: #6F4E37;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1001; /* Make sure this is higher than parent */
+  top: 100%;
+  left: 0;
+}
+
+.tab-content {
+  position: relative;
+  z-index: 1;  /* Very low z-index to stay behind nav */
+}
+
+#contact {
+  position: relative;
+  z-index: 1;  /* Very low z-index to stay behind nav */
+}
+.imgLink { border: none; background: none; }
+
+.imgLink:active img, .imgLink:focus img
+{
+  height: 40.5rem;
+  width: auto;
+}
+#LeftPane {
+  width: 24%px;
+  float: left;
+  text-align: center;
+}
+#MiddlePane{
+  width: 49%;
+  float: left;
+  text-align: center;
+}
+#RightPane{
+  width: 24%;
+  float: left;
+}
+
+  </style>
+</head>
+<body>
+
+  <nav>
+
+    <a href="javascript:void(0)" class="tab-link" onclick="openTab('about jb')">About <i>J.B.</i></a> 
+    <div class="nav-item">
+      <a href="javascript:void(0)" class="tab-link" onclick="openTab('job')">About Job</a>
+      <div class="subnav">
+        <a href="javascript:void(0)" onclick="openTab('job'); document.getElementById('job-about').style.display='block'; document.getElementById('job-summary').style.display='none'; document.getElementById('job-selected-quotations').style.display='none'; document.getElementById('job-full-text').style.display='none';">History</a>
+        <a href="javascript:void(0)" onclick="openTab('job'); document.getElementById('job-summary').style.display='block'; document.getElementById('job-about').style.display='none'; document.getElementById('job-selected-quotations').style.display='none'; document.getElementById('job-full-text').style.display='none';">Summary</a>
+        <a href="javascript:void(0)" onclick="openTab('job'); document.getElementById('job-full-text').style.display='block'; document.getElementById('job-about').style.display='none'; document.getElementById('job-summary').style.display='none'; document.getElementById('job-selected-quotations').style.display='none';">Full Text</a>
+      </div>
+    </div>  
+    <a href="javascript:void(0)" class="tab-link" onclick="openTab('bio')">About MacLeish</a>
+    <div class="nav-item">
+         <a href="javascript:void(0)" class="tab-link" onclick="openTab('glossary')">Glossary</a>
+      <div class="subnav">
+        <a href="javascript:void(0)" class="tab-link" onclick="openTab('glossary')">Glossary of Terms</a>
+        <a href="javascript:void(0)" class="tab-link" onclick="openTab('job-glossary')">Glossary of Job</a>
+      </div>
+    </div>     
+    <!--<a href="javascript:void(0)" class="tab-link" onclick="openTab('job-J.B.')">Job and <i>J.B.</i> Side-by-Side</a> -->
+    <a href="javascript:void(0)" class="tab-link" onclick="openTab('media')">Media & Resources</a>
+    <a href="javascript:void(0)" class="tab-link" onclick="openTab('contact')">Contact</a>
+    
+  </nav>
+  <div id="job" class="tab-content">
+    <h1>About Job</h1>
+    <body style="background-color:#faecd3;"></body>
+    
+    <!-- Job navigation buttons -->
+    <div class="job-navigation" style="display: none;"> <!--  hides nav buttons -->
+      <button onclick="document.getElementById('job-full-text').style.display='none'; document.getElementById('job-selected-quotations').style.display='none'; document.getElementById('job-summary').style.display='none'; document.getElementById('job-about').style.display='block';">History</button>
+      <button onclick="document.getElementById('job-full-text').style.display='none'; document.getElementById('job-selected-quotations').style.display='none'; document.getElementById('job-summary').style.display='block'; document.getElementById('job-about').style.display='none';">Summary</button>
+      <button onclick="document.getElementById('job-full-text').style.display='none'; document.getElementById('job-selected-quotations').style.display='block'; document.getElementById('job-summary').style.display='none'; document.getElementById('job-about').style.display='none';">Selected Quotations</button>     
+      <button onclick="document.getElementById('job-full-text').style.display='block'; document.getElementById('job-selected-quotations').style.display='none'; document.getElementById('job-summary').style.display='none'; document.getElementById('job-about').style.display='none';">Full Text</button>
+
+    </div>
+  
+    <!-- Selected Quotations Section -->
+    <div id="job-selected-quotations" class="tab-content" style="display:none;">
+      <h2>
+        Selected Quotations from the Book of Job
+      </h2>
+      <p>
+        Here you can find some important quotations from the Book of Job.
+      </p>
+      <ul>
+        <li>
+          "The Lord gave and the Lord has taken away; may the name of the Lord be praised." - Job 1:21
+        </li>
+        <li>
+          "Naked I came from my mother's womb, and naked I will depart." - Job 1:21
+        </li>
+        <li>
+          "Why is light given to those in misery, and life to the bitter of soul?" - Job 3:20
+        </li>
+        <!-- Add more quotations as needed -->
+      </ul>
+    </div>
+  
+    <!-- Summary Section -->
+    <div id="job-summary" class="tab-content" style="display:none;">
+      <h2>
+        Summary of the Book of Job
+      </h2>
+      <p>
+          <div id="LeftPane">
+        <img src="https://blakearchive.org/images/but550.1.5.wc.100.jpg" alt="Blake Job"
+        width="220" 
+        height="280" style="float:left; margin-right: 15px"><br>
+        <img src="https://blakearchive.org/images/but550.1.3.wc.100.jpg" alt="Blake Job"
+        width="220" 
+        height="280" style="float:left; float:top; margin-right: 15px"><br>
+        <img src="https://blakearchive.org/images/but550.1.15.wc.100.jpg" alt="Blake Job"
+        width="220" 
+        height="280" style="float:left; float:top; margin-right: 15px"> </div>
+          <div id="MiddlePane"><p id="summaryofjob">
+        Job is a wealthy man living in a land called Uz with his large family and extensive flocks. 
+        He is “blameless” and “upright,” always careful to avoid doing evil (1:1). 
+        One day, Satan (“the Adversary”) appears before God in heaven. 
+        God boasts to Satan about Job’s goodness, but Satan argues that Job is only good because God has blessed him abundantly. 
+        Satan challenges God that, if given permission to punish the man, Job will turn and curse God. 
+        God allows Satan to torment Job to test this bold claim, but he forbids Satan to take Job’s life in the process. 
+        <br><br>
+        In the course of one day, Job receives four messages, each bearing separate news that his livestock, servants, and ten children have all died. 
+        Job tears his clothes and shaves his head in mourning, but he still blesses God in his prayers. 
+        Next, Job is afflicted with horrible skin sores. His wife encourages him to curse God and to give up and die, but Job refuses, struggling to accept his circumstances. 
+        <br><br>
+        Three of Job’s friends, Eliphaz, Bildad, and Zophar, come to visit him, beginning a conversation in which each of the four men shares his thoughts on Job’s afflictions. 
+        <br><br>
+        Job curses the day he was born, comparing life and death to light and darkness. 
+        Eliphaz responds that Job, who has comforted other people, now shows that he never really understood their pain. 
+        Eliphaz believes that Job’s agony must be due to some sin Job has committed, and he urges Job to seek God’s favor. 
+        Bildad and Zophar agree that Job must have committed evil to offend God’s justice and argue that he should strive to exhibit more blameless behavior. 
+        Bildad surmises that Job’s children brought their deaths upon themselves. 
+        Even worse, Zophar implies that whatever wrong Job has done probably deserves greater punishment than what he has received.
+        <br><br> 
+        Job responds to each of these remarks, growing so irritated that he calls his friends “worthless physicians” who “whitewash [their advice] with lies” (13:4).  
+        Job wishes for someone who can mediate between himself and God, or for God to send him to Sheol, the deep place of the dead. 
+        <br><br>
+        Job’s friends are offended that he scorns their wisdom. 
+        They think his questions are crafty and lack an appropriate fear of God, and they use many analogies and metaphors to stress their ongoing point that nothing good comes of wickedness. 
+         After a while, the upbraiding proves too much for Job, and he grows sarcastic, impatient, and afraid. 
+        He laments the injustice that God lets wicked people prosper while he and countless other innocent people suffer.
+         Job wants to confront God and complain, but he cannot physically find God to do it. 
+        He feels that wisdom is hidden from human minds, but he resolves to persist in pursuing wisdom by fearing God and avoiding evil.  
+        <br><br>
+        God finally interrupts, calling from a whirlwind and demanding Job to be brave and respond to his questions. 
+        God’s questions are rhetorical, intending to show how little Job knows about creation and how much power God alone has. 
+        God describes many detailed aspects of his creation, praising especially his creation of two large beasts, the Behemoth and Leviathan. 
+        Overwhelmed by the encounter, Job acknowledges God’s unlimited power and admits the limitations of his human knowledge. 
+        This response pleases God, but he is upset with Eliphaz, Bildad, and Zophar for spouting poor and theologically unsound advice. 
+        Job intercedes on their behalf, and God forgives them. God returns Job’s health, providing him with twice as much property as before, new children, and an extremely long life.
+      </p>
+      <br>
+          Adapted from <a href="https://www.sparknotes.com/lit/oldtestament/section11/">Sparknotes</a>.</div>
+      <div id="RightPane">
+        <img src="https://blakearchive.org/images/but550.1.2.wc.100.jpg" alt="Blake Job"
+        width="220" 
+        height="280" style="float:right; margin-right: 15px">
+        <img src="https://blakearchive.org/images/but550.1.9.wc.100.jpg" alt="Blake Job"
+        width="220" 
+        height="280" style="float:right; float:top; margin-right: 15px"> 
+        <img src="https://blakearchive.org/images/but550.1.14.wc.100.jpg" alt="Blake Job"
+        width="220" 
+        height="280" style="float:right; float:top; margin-right: 15px"> 
+      </div>
+    </div>
+
+        <!-- history Section -->
+        <div id="job-about" class="tab-content" style="display:block;">
+          <h2>
+            History of the Book of Job
+          </h2>
+          <img src="https://blakearchive.org/images/but557.1.11-15.pd.100.jpg" alt="Archibald MacLeish"
+      width="420" 
+      height="540" style="float:left; margin-right: 15px">
+          <p>
+            The Book of Job is a book of Hebrew scripture that is often counted among the masterpieces of world literature. 
+            It is found in the third section of the biblical canon known as the Ketuvim (“Writings”). 
+            The book’s theme is the eternal problem of unmerited suffering, and it is named after its central character, Job, who attempts to understand the sufferings that engulf him.
+            <br><br> 
+            The Book of Job may be divided into two sections of prose narrative, consisting of a prologue (chapters 1–2) and an epilogue (chapter 42:7–17), and intervening poetic disputation (chapters 3–42:6). 
+            The prose narratives date to before the 6th century bce, and the poetry has been dated between the 6th and the 4th century bce. 
+            Chapters 28 and 32–37 were probably later additions.
+            <br><br> 
+            The Book of Job’s artful construction accounts for much of its impact. 
+            The poetic disputations are set within the prose framework of an ancient legend that originated outside Israel. 
+            This legend concerns Job, a prosperous man of outstanding piety. Satan acts as an agent provocateur to test whether or not Job’s piety is rooted merely in his prosperity. 
+            But faced with the appalling loss of his possessions, his children, and finally his own health, Job still refuses to curse God. 
+            Three of his friends then arrive to comfort him, and at this point the poetic dialogue begins. 
+            The poetic discourses—which probe the meaning of Job’s sufferings and the manner in which he should respond—consist of three cycles of speeches that contain Job’s disputes with his three friends and his conversations with God. 
+            Job proclaims his innocence and the injustice of his suffering, while his “comforters” argue that Job is being punished for his sins. 
+            Job, convinced of his faithfulness and uprighteousness, is not satisfied with this explanation. 
+            The conversation between Job and God resolves the dramatic tension—but without solving the problem of undeserved suffering. 
+            The speeches evoke Job’s trust in the purposeful activity of God in the affairs of the world, even though God’s ways with man remain mysterious and inscrutable.
+          </p>
+          <p>
+            From <a href="https://www.britannica.com/topic/The-Book-of-Job">Encyclopaedia Britannica</a>.
+          </p>
+        </div>
+    
+
+        <!-- Full Text Section -->
+        <div id="job-full-text" class="tab-content" style="display:none;">
+          <h2>
+            Full Text of the Book of Job
+          </h2>
+          <iframe src="https://www.sefaria.org/Job.1?lang=bi" width="100%" height="600px" style="border:none;"></iframe>
+        </div>
+
+  </div>
+  
+  <script>
+  // Function to show the relevant Job section when the button is clicked
+  function openJobSection(sectionId) {
+    // Get all sections under job-content
+    var sections = document.querySelectorAll("#job .tab-content");
+    
+    // Hide all sections
+    sections.forEach(function(section) {
+      section.style.display = "none";
+    });
+    
+    // Show the clicked section
+    document.getElementById(sectionId).style.display = "block";
+  }
+  </script>
+  
+  <div class="site-title-small">
+    <a href="javascript:void(0)" onclick="openTab('home')" style="color: white; text-decoration: none;">J.B.</a>
+  </div>
+
+  <div id="home" class="tab-content active">
+    <h1 class="home-title"><i>J.B.</i> Dramaturgy</h1>
+    <h2 class="home-subtitle"> Simon Reich</h2>   
+  </div>
+
+  <div id="about jb" class="tab-content">
+    <h1>
+      About <i>J.B.</i>
+    </h1>
+    <img src="https://blakearchive.org/images/but551.1.20.wc.100.jpg"
+      width="460" 
+      height="360" style="float:left; margin-right: 15px">
+      <p></p>
+    <h2>
+      Synopsis
+    </h2>
+      <p> 
+        Two washed-up actors at a traveling circus decide to act out the biblical story of Job. 
+        Once they begin, though, the circus comes to life, and Job is retold as the story of a successful American industrialist named J.B.. 
+        In that story, Satan (Nickles) makes a wager with God (Mr. Zuss) that if he deprives his "most loyal servant" (J.B.) of everything he has, he will "curse God to his face." 
+        After killing his children, destroying his home and his marriage, and ruining his body, three friends of J.B., a psychiatrist, a cleric, and a Marxist, come to 'comfort' him, but each fails. 
+        In <i>J.B.</i>, though not in the Bible, the Devil comes to try to persuade J.B. to curse God but fails. 
+        Ultimately, J.B. neither curses God nor redoubles his faith, but returns to his dearest human connection: his wife.
+      </p>
+    <h2>
+      Genre
+    </h2>
+      <p> 
+        <i>J.B.</i> is written in free verse and is difficult to classify by genre. 
+        It fits somewhere between American, Biblical, and magical realism. 
+        The play touches on themes of loss, grief, faith, the American Dream, what one deserves, and more. 
+        With <i>J.B.</i>, MacLeish aimed to modernize the biblical story of Job and make clear that the questions it poses remain intensely relevant today. 
+      </p>
+  </div>
+
+  <div id="job-glossary" class="tab-content">
+    <h1>
+      Quotes from Job referenced in <i>J.B.</i>
+      <hr>
+    </h1>
+    <h4>
+      Mr. Zuss: Whatsoever is under the whole heaven is mine! <br><br>pg.17
+    </h4>
+      <p> 
+        Job 41:11
+        <br>Though recited by Mr. Zuss at the beginning of the play before he takes the role of God, this line originates at the very end of The Book of Job, 
+        as God relates to Job the infinte breadth of his knowledge of the universe.
+      </p>
+      <hr>
+    <h4>
+      GODMASK: Whence comest thou? <br><br>pg.24-25
+    </h4>
+      <p> 
+        Job 1:7
+        <br>God asks this question of Satan at the very beginning of Job, prompting Satan's wager with God.
+      </p>
+      <hr>
+    <h4>
+      GODMASK:Whence comest thou?<br>SATANMASK: From going to and fro in the earth, and from walking up and down in it. <br><br>pg.24-25
+    </h4>
+      <p> 
+        Job 1:7
+        <br>God asks this question of Satan at the very beginning of Job, prompting Satan's wager with God. The nature of this line has prompted much discourse. Some scholars have argued that the primary purpose
+        of this line is to emphasize the cordial relationship between God and Satan, while others have chosed to focus on it as evidence of Satan's villany, wherein he preoccupies himself with travelling the earth 
+        with the aim of doing evil. 
+      </p>
+      <hr>
+    <h4>
+      GODMASK: Hast thou considered my servant Job? That there is none like him on the earth, a perfect and an upright man, that feareth God and escheweth evil? <br>pg.26-27
+    </h4>
+      <p> 
+        Job 1:8
+        <br>Some scholars have interpreted this question as a legitimate one asked of Satan, while others have read it as rhetorical, wherein God's point about Job's faithfulness is made simply in asking the question.
+      </p>
+      <hr>
+    <h4>
+      GODMASK: Hast thou considered my servant Job? That there is none like him on the earth, a perfect and an upright man, that feareth God and escheweth evil?
+      <br><br>SATANMASK: Doth Job fear God for naught? hast thou not made an hedge about him, and about his house, and about all that he hath on every side? Thou hast blessed the work of his 
+      hands, and his substance is increased. But put forth thine hand now and touch all that he hath...and he will curse thee to thy face! 
+      <br><br>GODMASK: Behold! all that he hath is in thy power!
+      <br><br>DISTANT VOICE: ...Upon himself...put not forth thy hand!
+      <br><br>pg.41
+    </h4>
+      <p> 
+        Job 1:8-1:12
+        <br>This exchange is the inciting incident of The Book of Job. In it, Satan asks the text's central question: "Can one be faithful to God when everything is taken from them?" <i>J.B.</i> continues this question with the addendum: "Should they?"
+      </p>
+      <hr>
+          <h4>
+      J.B.: God! My God! My God, answer me! I cry out of wrong, but I am not heard! I cry aloud, but there is not judgement! Though he slay me, yet will I trust in him&mdash;but I will maintain my own ways befor him. O, that I knew where I might find him!
+      That I might come even to his seat! I would order my cause before him and fill my mouth with arguments. Behold, I go forward but he is not there, backwards, but I cannot percieve him...
+      <br><br>DISTANT VOICE: Who is this that darkeneth counsel by words without knowledge? Where wast thou when I laid the foundations of the earth? When the morning stars sang together and all the sons of God shouted for joy? Hast thou commanded the morning? 
+      Have the gates of death been opened unto thee? Where is the way where the light dwelleth? And as for the darkness, where is the place thereof? Hast thou entered into the trasures of the snow? By what way is the light parted which scattereth the east wind upon the earth? 
+      Can'st thou bind the sweet influences of the Pleiades? Hast thou given the horse strength? Hast thou clothed his neck with thunder? He saith among the trumpets, ha ha; 
+      He smelleth the battle afar off, the thunder of the captains and the shouting. Doth the eagle mount up at thy command? Her eyes behold afar off. Her young ones also suck up blood: and where the slain are, there is she...He that reproveth God, let him answer it!
+      <br><br>J.B.: Behold, I am vile: What shall I answer thee? I will lay mine hand upon my mouth.
+      <br><br>DISTANT VOICE: Gird up thy loins like a man. I will demand of thee, and declare thu unto me. Wilt thou disannul my judgement? wilt thou condemn me that thou mayst be righteous? Hast thou an arm like God? Or canst thou thunder with a voice like him? Deck thyself now
+      with majesty and excellency, and array thyself with glory and beauty...Then will I also confess unto thee that thine own right hand can save thee.
+      <br><br>J.B.: I know that thou canst do everything. And that no thought can be withholden from me. Wherefore I have uttered that I understand not, things too wonderful for me...which I understood not. Hear, I beseech thee by the hearing of the ear, but now mine eye see thee, wherefore I abhor myself, and repent.
+      <br><br>pg.95-98
+    </h4>
+      <p> 
+        Job 19:7 and Job 38:2-42:6
+        <br>This exchange effectively concludes The Book of Job, by God responding to Job's outcries by telling him of his incomprable omnipotence and Job's ultimate insignificance. Despite ending the story, this passage does not satisfy most readers. Is the justifaction for Job's suffering <i>really</i> just that God is so much more powerful, 
+        so much more significant, that not only are Job's sufferings minute, but his complaints are in bad faith? That's hard to reckon with. 
+      </p>
+      <hr>
+  </div>
+
+  <div id="glossary" class="tab-content">
+
+    <h1>Glossary of Terms</h1>
+
+    <!-- Dropdown Menu for Filter by Category -->
+    <div class="dropdown">
+      <button class="dropbtn">Filter by Category</button>
+      <div class="dropdown-content">
+        <label><input type="checkbox" value="frame-narrative" onchange="filterGlossary()"> Frame Narrative</label>
+        <label><input type="checkbox" value="pop-culture" onchange="filterGlossary()"> Pop Culture</label>
+        <label><input type="checkbox" value="metanarrative" onchange="filterGlossary()"> Metanarrative</label>
+        <label><input type="checkbox" value="religion" onchange="filterGlossary()"> Religion</label>
+        <label><input type="checkbox" value="set" onchange="filterGlossary()"> Set</label>
+        <label><input type="checkbox" value="props" onchange="filterGlossary()"> Props</label>
+        <label><input type="checkbox" value="costumes" onchange="filterGlossary()"> Costumes</label>
+      </div>
+    </div>
+
+    <!-- Glossary terms -->
+    <div id="glossary-terms">
+      <div class="glossary-term" data-tags="frame-narrative religion">
+        <h4>Mr. Zuss</h4>
+        <p>	A name, an allusion to Zeus, the Ancient Greek king of the gods.</p>
+      </div>
+      <div class="glossary-term" data-tags="frame-narrative religion">
+        <h4>Nickles</h4>
+        <p>A name, an allusion to Old Nick, a folk name for the devil.</p>
+      </div>
+      <div class="glossary-term" data-tags="frame-narrative props costumes">
+        <h4>Godmask</h4>
+        <p>A costume mask representing the face of God.</p>
+      </div>
+      <div class="glossary-term" data-tags="frame-narrative props costumes">
+        <h4>Satanmask</h4>
+        <p>A costume mask representing the face of Satan.</p>
+      </div>
+      <div class="glossary-term" data-tags="frame-narrative set">
+        <h4>Circus Ring</h4>
+        <p>The round, ground-level performance space in which circuses are acted.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative">
+        <h4>Roustabout</h4>
+        <p>A circus worker who erects and dismantles tents, cares for the grounds, and handles animals and equipment.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>God (Jewish)</h4>
+        <p>The Jewish conception of God is complicated but necessitates an all-powerful, all-knowing, eternally singular deity.</p>
+      </div>
+      <div class="glossary-term" data-tags="frame-narrative religion">
+        <h4>Job</h4>
+        <p>The Biblical character upon which <i>J.B.</i> is based. He is a faithful servant of God whose loyalty is tested as part of a wager between God and Satan.</p>
+      </div>
+      <div class="glossary-term" data-tags="frame-narrative religion">
+        <h4>Leviathan (pg. 18)</h4>
+        <p>A sea serpent in Jewish mythology, one of the creatures described by God to Job in the Book of Job.</p>
+      </div>
+      <div class="glossary-term" data-tags="frame-narrative pop-culture">
+        <h4>Odysseus (pg. 19)</h4>
+        <p>An Ancient Greek hero, the main character of Homer's <i>The Odyssey</i> and <i>The Iliad</i>.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>Grace (pg. 27)</h4>
+        <p>A Christian ceremony of thanksgiving often said before meals.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>Amen (pg. 27)</h4>
+        <p>A word said and often repeated at the end of Jewish and Christian ceremonies, literally translating to “it is true.”</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>Praise like a canary (pg. 39)</h4>
+        <p>Idiom; to praise excessively and enthusiastically.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative">
+        <h4>Viaduct (pg. 53)</h4>
+        <p>An overland railroad bridge.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative props">
+        <h4>Parasol (pg. 61)</h4>
+        <p>
+          <button class="imgLink">  
+          <img src="https://cdn.historicalemporium.com/store/media/001109/001109_01.jpg"
+          width="150 px"
+          height="auto">
+        </button>  
+          <br>A thin umbrella designed to block the sun.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative">
+        <h4>Guy ropes (pg. 64)</h4>
+        <p>Ropes fixed to the ground or a supporting structure providing the tension needed for tents to stand.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative">
+        <h4>Foundered (pg. 66)</h4>
+        <p>Failed.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative">
+        <h4>Lee of the wind (pg. 66)</h4>
+        <p>Sailing metaphor, sheltered from the wind.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative costumes">
+        <h4>Civil Defense Officer (pg. 68)</h4>
+        <p>"Civil defense officer (or member of a recognized civil defense or emergency preparedness organization) means any individual who is assigned to and is performing the assigned tasks of the unit or organization which has been given a mission under the direction or operational control of a Civil Defense or Emergency Preparedness Director/Coordinator." 
+          <a href="https://www.law.cornell.edu/cfr/text/44/150.2#:~:text=Civil%20defense%20officer%20">Legal definition</a>.
+        </p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative">
+        <h4>Trembling ham bones (pg. 70)</h4>
+        <p>Muscle spasms.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>Christian Innocence</h4>
+        <p>A state of purity, blamelessness, and freedom from sin. To some Christian denominations, those who lived innocent lives ascend to Heaven after death.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative costumes religion">
+        <h4>Cleric (pg. 83)</h4>
+        <p>A religious official, non-denominational.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative costumes">
+        <h4>Proletarian (pg. 83)</h4>
+        <p>A member of the working class, specifically in Marxist philosophy.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative props">
+        <h4>Cigarette holder (pg. 83)</h4>
+        <p>
+          <button class="imgLink">  
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Cigarette_holder.png/1200px-Cigarette_holder.png?20100602110300"
+          width="150 px"
+          height="auto">
+        </button>
+        <br>
+        A slender tube in which a cigarette is held for smoking, a fashion accessory.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>Bildad (pg. 83)</h4>
+        <p>Bildad the Shuhite, one of Job’s comforters in the biblical story.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>Eliphaz (pg. 83)</h4>
+        <p>Eliphaz the Temanite, one of Job’s comforters in the biblical story.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>Zophar (pg. 83)</h4>
+        <p>Zophar the Naamathite, one of Job’s comforters in the biblical story.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Blasphemy (pg. 89)</h4>
+        <p>In Christianity and Judaism, the act of speaking against God.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Sin</h4>
+        <p>In Christianity and Judaism, a transgression against divine law.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Creator of the Universe (pg. 93)</h4>
+        <p>In Christian and Jewish practice, God, who, in the book of Genesis, created the universe.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Adam’s Fall (pg. 93)</h4>
+        <p>In Christian theology, the origination of human sin. 
+          Specifically, the result of Adam and Eve's disobedience to God in the biblical story of the Garden of Eden&mdash;that is, their eating of the forbidden fruit.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Gird up thy loins (pg. 97)</h4>
+        <p>Prepare yourself.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Disannul (pg. 97)</h4>
+        <p>Cancel.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion pop-culture">
+        <h4>Pleiades (pg. 98)</h4><br>
+        <p>
+        <button class="imgLink">  
+        <img src="https://cdn.mos.cms.futurecdn.net/nwRnUEaELuneFsNgbF7vKM-970-80.jpg.webp"
+        width="150 px"
+        height="auto">
+      </button>  
+        <br>A group of stars, also called the Seven Sisters.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion pop-culture">
+        <h4>Orion (pg. 98)</h4><br>
+        <p>
+          <button class="imgLink">    
+            <img src="https://cdn.mos.cms.futurecdn.net/jBaW3ZCr6XK4zM5wRaCUxc-1200-80.jpg"
+            width="150 px"
+            height="auto">
+          </button>
+        An Ancient Greek constellation named after a hunter in Greek Mythology.
+        </p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion">
+        <h4>The Father (pg. 103)</h4>
+        <p>In Christian practice, God.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Took a rope’s end (pg. 105)</h4>
+        <p>Commited suicide.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Took a window for a door (pg. 105)</h4>
+        <p>Commited suicide.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Godsend (106)</h4>
+        <p>A very helpful event, idea, or thing.</p>
+      </div>
+      <div class="glossary-term" data-tags="metanarrative religion frame-narrative">
+        <h4>Bullwhip (106)</h4>
+        <p>A whip, used to control livestock and, in cases of torture, to maim people.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="bio" class="tab-content">
+    <h1>About Archibald Macleish</h1>
+      <div><img src="https://thecommononline.org/wp-content/uploads/2017/04/unspecified.jpg" alt="Archibald MacLeish"
+      width="470" 
+      height="590" style="float:left; margin-right: 15px">
+      <span>
+        Archibald MacLeish was born in Glencoe, Illinois, on May 7, 1892. First educated at Hotchkiss School, MacLeish later studied at Yale and Harvard Law School, where he was first in his class. 
+        Although he focused his studies on law, he also began writing poetry during this time. 
+        <br><br>
+        At the onset of World War I, MacLeish volunteered as an ambulance driver, and later became a captain of field artillery. 
+        Upon returning home, he worked in Boston as a lawyer but found that the position distracted him from his poetry. 
+        He resigned in 1923, on the day that he was promoted to partner in the firm. 
+        MacLeish then moved his family to France and began to focus on writing. 
+        There he was to befriend fellow writers such as Kay Boyle, Ernest Hemingway, and Ezra Pound. 
+        During the next four years, MacLeish published four books of poetry, including <i>The Happy Marriage and Other Poems</i> (Houghton Mifflin, 1924) and <i>The Pot of Earth</i> (Houghton Mifflin, 1925). 
+        In 1928, MacLeish returned to the U.S., where he began research for his epic poem <i>Conquistador</i> by traveling the steps and mule-ride of Hernán Cortés’s army through Mexico. 
+        MacLeish won the Pulitzer Prize for this work in 1932. 
+        <br><br>
+        From 1930 to 1938, MacLeish worked as an editor at <i>Fortune</i> magazine. 
+        During that period, he wrote two radio dramas to increase patriotism and warn Americans against fascism. 
+        MacLeish also displayed increasing passion for this cause in his poems and articles. 
+        In 1939, President Franklin D. Roosevelt persuaded him to accept an appointment as Librarian of Congress, a position he kept for five years. 
+        MacLeish thoroughly reorganized the Library’s administrative offices and established its series of poetry readings. 
+        At the same time, MacLeish served as director of the War Department’s Office of Facts and Figures and assistant director of the Office of War Information, specializing in propaganda. 
+        In 1944, he was appointed assistant secretary of state for cultural affairs. 
+        After World War II, MacLeish became the first American member of the governing body of UNESCO, and chaired the first UNESCO conference in Paris. 
+        <br><br>
+        In 1949, MacLeish retired from his political activism to become Harvard’s Boylston Professor of Rhetoric and Oratory, a position he held until 1962. 
+        From 1963 to 1967, he was Simpson Lecturer at Amherst College. MacLeish continued to write poetry, criticism, and stage and screenplays, to great acclaim. 
+        His <i>Collected Poems</i>, 1917–1952 (Houghton Mifflin, 1952), won him a second Pulitzer Prize, as well as the National Book Award and the Bollingen Prize. 
+        <i>J.B.</i> (Houghton Mifflin, 1958), a verse play based on the book of Job, earned him a third Pulitzer, this time for drama. 
+        In 1965, MacLeish received an Academy Award for his work on the screenplay of <i>The Eleanor Roosevelt Story</i>. 
+        He served as a Chancellor of the Academy of American Poets from 1946 to 1949.   
+        <br><br>
+        Archibald MacLeish died on April 20, 1982, in Boston.
+        <br><br>
+        Biography from <a href="https://poets.org/poet/archibald-macleish">poets.org</a>, image from <a href="https://www.thecommononline.org/that-awkward-unbalance-that-becomes-the-beautiful-an-interview-with-archibald-macleish/">the common</a>. Read (much) more about MacLeish <a href="https://www.poetryfoundation.org/poets/archibald-macleish">here</a>. 
+      </span> 
+    </div>
+
+  </div>
+
+  <div id="job-J.B." class="tab-content" style="width: 100%;">
+    <h1>Job and <i>J.B.</i> Side-by-Side</h1>
+      <div style="width: 50%; height: 100px; float: left;"> 
+          <h2>J.B. text</h2>
+      </div>
+      <div style="margin-left: 50%; height: 100px;"> 
+          <h2>Job Text</h2>
+      </div>
+  </div>
+
+  </div>
+
+  <div id="media" class="tab-content">
+    <h1>
+      Media and Resources
+    </h1>
+    <h3>
+      William Blake's Illustrations to the Book of Job
+    </h3>
+    <div>
+      <img src="https://blakearchive.org/images/bb421.1.2-1.ps.100.jpg" 
+            alt="cover page of William Blake's Illustrations of The Book of Job"
+            width="220" 
+            height="280" 
+            style="float:left; margin-right: 15px"> 
+      <span>
+        Blake's twenty-two engraved Illustrations of the Book of Job are the culmination of his long pictorial engagement with that biblical subject. 
+        Blake follows the general outline of the story of Job in the Bible, but also incorporates into his designs many motifs representing his personal interpretation.
+        At the beginning, Job and his family attend only to the letter, rather than the spirit, of God's laws. 
+        Job thereby falls under a false conception of God and into the hands of Satan. Job's sufferings are recorded in the first half of the series, culminating in his horrific vision of a devil-god in the eleventh design. 
+        Job's spiritual education and material restoration are pictured in the second half of the series. 
+        In the penultimate design, Job tells his story to his daughters; the entire family is restored to life in the final design. 
+        Some critics and biographers have interpreted the Job series as personal statements about Blake's own tribulations and the spiritual peace he found late in life. 
+        <br><br> 
+        --The William Blake Archive
+      </span> 
+        <p>
+          <a href="https://oll-resources.s3.us-east-2.amazonaws.com/oll3/store/titles/2155/Blake_1434_EBk_v6.0.pdf">comprehensive pdf with analysis</a>; 
+          <a href="https://blakearchive.org/copy/bb421.1?descId=bb421.1.spb.01">complete collection of illustrations</a>.
+        </p>
+    </div>
+  <br><br><br><hr>
+    <h3>Byzantine illuminations of Job</h3>
+       <div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/LB100fol124.JPG" 
+              alt="Byzantine illumination of Job" 
+              width="250" 
+              height="220"
+              style="float:left; margin-right: 15px"> 
+        <span>
+          This is an illumination from a Byzantine copy of the Book of Job. It depicts Job [left] being 'comforted' by Eliphaz, Bildad, and Zophar [right].
+          <br><br>
+          Read more 
+          <a href="https://en.wikipedia.org/wiki/Book_of_Job_in_Byzantine_illuminated_manuscripts">here</a>. 
+        </span> 
+      </div>  
+      <br><br><br><br><br><br><br><br><hr>
+    <h3><i>South Park's </i>Job</h3>
+       <div>
+        <img src="https://images.paramount.tech/uri/mgid:arc:imageassetref:shared.southpark.us.en:60c223e0-74d7-4715-8168-1b519c8637c5?quality=0.7&gen=ntrn" 
+              alt="Southpark Job" 
+              width="350" 
+              height="220"
+              style="float:left; margin-right: 15px"> 
+        <span>
+          In 2001, the TV show <i>South Park</i> parodied Job, with Kyle's ultimate reaction to the story's dissatisfied ending being "there is no God." Warning: This is <i>South Park,</i> so it's got some pretty offensive and shocking stuff in it, including (animated) surgery and out-dated depictions of barbarians and ancient Israelites.
+          <br><br>
+          Watch the clip (about 2 minutes) 
+          <a href="https://southpark.cc.com/video-clips/jwjb1l/south-park-the-book-of-job">here</a>. 
+        </span> 
+      </div>
+  <br><br><br><br><br><br><br><br><br><hr>
+    <h3>Bełżec Extermination Camp Memorial</h3>
+      <div>
+        <img src="https://www.liberationroute.com/pictures/2057/belzec-memorial-site-damian-entwistle-via-flickr_1280_1280_fit_90.jpg" 
+              alt="Inscription at the Bełżec camp memorial" 
+              width="370" 
+              height="220"
+              style="float:left; margin-right: 15px"> 
+        <span>
+            At the memorial for those murdered at the Nazi extermination camp at Bełżec, a passage from Job is incribed on the wall, reading "Earth, do not cover my blood; let there be no resting place for my outcry"
+          <br><br>
+          Read more 
+          <a href="https://www.belzec.eu/en/page/commemoration/183">here</a>. 
+        </span> 
+      </div>
+  </div>
+
+  <div id="contact" class="tab-content">
+    <h1>Contact Me!</h1>
+    <br>
+      <img src="https://blakearchive.org/images/bb421.1.5-4.ps.100.jpg"
+      width="380" 
+      height="490" style="float:right; margin-left: 15px">
+    <h3>
+      If you wish to contact me, please send an email to <a href="mailto:sireich@andrew.cmu.edu">sireich@andrew.cmu.edu</a>, or fill out the form below: 
+      <br>     
+      All questions are welcome and appreciated!<br><br> 
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOFFn3NYpCNfmVZH0aahP2NuZeVFmWOgVK4QfDe11fcuyeXQ/viewform?embedded=true" width="65%" height="400px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </h3>
+  </div>
+
+  <div id="job" class="tab-content">
+    <h1>Job</h1>
+    <p>The book of Job in Hebrew and English with various translations available: <a href="https://www.sefaria.org/Job.1?lang=bi">link</a>.</p>
+  </div>
+
+  <script>
+    function openTab(tabName) {
+      // Hide all tab content
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // Show the selected tab content
+      const activeTab = document.getElementById(tabName);
+      activeTab.classList.add('active');
+    }
+
+    function filterGlossary() {
+      const checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked');
+      const selectedTags = Array.from(checkboxes).map(checkbox => checkbox.value);
+      const glossaryTerms = Array.from(document.querySelectorAll('.glossary-term'));
+
+      // If no checkboxes are selected, show all terms
+      if (selectedTags.length === 0) {
+        glossaryTerms.forEach(term => {
+          term.style.display = 'block'; // Show all terms
+        });
+      } else {
+        // Filter terms based on selected tags
+        glossaryTerms.forEach(term => {
+          const termTags = term.getAttribute('data-tags').split(' '); // Get all tags for the term
+          const shouldDisplay = selectedTags.every(tag => termTags.includes(tag)); // Show only terms that match all selected tags
+
+          if (shouldDisplay) {
+            term.style.display = 'block'; // Show term
+          } else {
+            term.style.display = 'none'; // Hide term
+          }
+        });
+      }
+
+      // Sort glossary terms alphabetically
+      glossaryTerms.sort((a, b) => {
+        const termA = a.querySelector('h4').textContent.toLowerCase();
+        const termB = b.querySelector('h4').textContent.toLowerCase();
+        return termA.localeCompare(termB);
+      });
+
+      // Append sorted glossary terms
+      const glossaryContainer = document.getElementById('glossary-terms');
+      glossaryTerms.forEach(term => {
+        glossaryContainer.appendChild(term);
+      });
+    }
+    const allowedPassword = "simon"; // Set your actual password
+let enteredPassword = prompt("Enter your password:");
+
+if (enteredPassword !== allowedPassword) {
+    alert("You are not authorized to access this website.");
+    document.body.innerHTML = "<h1>Access Denied</h1>"; // Block access
+} else {
+    alert("Access granted. Welcome!");
+}
+
+    // Call filterGlossary initially to sort terms on page load
+    filterGlossary();
+  </script>
+
+</body>
+</html>
